@@ -1,161 +1,240 @@
--- BAC0NS HUB - Atualizado (Tema Marrom)
-
+-- BAC0NS HUB - Atualizado
 local ScreenGui = Instance.new("ScreenGui")
 local Main = Instance.new("Frame")
 local TopBar = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
+local MinButton = Instance.new("TextButton")
 local CloseButton = Instance.new("TextButton")
-local MinimizeButton = Instance.new("TextButton")
 local SideBar = Instance.new("Frame")
 local ScriptsButton = Instance.new("TextButton")
 local PlayerButton = Instance.new("TextButton")
 local MainArea = Instance.new("Frame")
+
+-- Scripts Page
 local FlyButton = Instance.new("TextButton")
+local ESPButton = Instance.new("TextButton")
 local NoClipButton = Instance.new("TextButton")
 
--- GUI
+-- Player Page
+local SpeedButton = Instance.new("TextButton")
+local JumpButton = Instance.new("TextButton")
+local TeleportBox = Instance.new("TextBox")
+local TeleportButton = Instance.new("TextButton")
+
+-- Gui Setup
 ScreenGui.Parent = game.CoreGui
 ScreenGui.Name = "BACONS_HUB"
 
-Main.Name = "Main"
 Main.Parent = ScreenGui
 Main.BackgroundColor3 = Color3.fromRGB(60, 40, 20)
 Main.Position = UDim2.new(0.3, 0, 0.2, 0)
 Main.Size = UDim2.new(0, 500, 0, 300)
 
--- TopBar
 TopBar.Parent = Main
 TopBar.BackgroundColor3 = Color3.fromRGB(85, 60, 30)
-TopBar.Size = UDim2.new(1, 0, 0, 40)
+TopBar.Size = UDim2.new(1, 0, 0, 35)
 
 Title.Parent = TopBar
-Title.Text = "☕ BACONS HUB"
+Title.Text = "☕ BAC0NS HUB"
 Title.Font = Enum.Font.GothamBold
+Title.TextSize = 20
 Title.TextColor3 = Color3.new(1,1,1)
-Title.TextSize = 22
-Title.Position = UDim2.new(0, 10, 0, 0)
-Title.Size = UDim2.new(0, 400, 0, 40)
 Title.BackgroundTransparency = 1
+Title.Size = UDim2.new(1, -90, 1, 0)
+Title.Position = UDim2.new(0, 10, 0, 0)
 Title.TextXAlignment = Enum.TextXAlignment.Left
 
--- Botão fechar
+MinButton.Parent = TopBar
+MinButton.Text = "-"
+MinButton.Font = Enum.Font.GothamBold
+MinButton.TextSize = 20
+MinButton.TextColor3 = Color3.new(1,1,1)
+MinButton.BackgroundColor3 = Color3.fromRGB(255, 200, 0)
+MinButton.Size = UDim2.new(0, 30, 0, 25)
+MinButton.Position = UDim2.new(1, -60, 0.1, 0)
+
 CloseButton.Parent = TopBar
-CloseButton.BackgroundColor3 = Color3.fromRGB(255, 60, 60)
-CloseButton.Position = UDim2.new(1, -45, 0.2, 0)
-CloseButton.Size = UDim2.new(0, 30, 0, 25)
-CloseButton.Font = Enum.Font.GothamBold
 CloseButton.Text = "X"
+CloseButton.Font = Enum.Font.GothamBold
+CloseButton.TextSize = 20
 CloseButton.TextColor3 = Color3.new(1,1,1)
-CloseButton.TextSize = 16
-CloseButton.MouseButton1Click:Connect(function()
-    ScreenGui:Destroy()
-end)
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 80, 80)
+CloseButton.Size = UDim2.new(0, 30, 0, 25)
+CloseButton.Position = UDim2.new(1, -30, 0.1, 0)
 
--- Botão Minimizar
-MinimizeButton.Parent = TopBar
-MinimizeButton.BackgroundColor3 = Color3.fromRGB(90, 90, 90)
-MinimizeButton.Position = UDim2.new(1, -85, 0.2, 0)
-MinimizeButton.Size = UDim2.new(0, 30, 0, 25)
-MinimizeButton.Font = Enum.Font.GothamBold
-MinimizeButton.Text = "-"
-MinimizeButton.TextColor3 = Color3.new(1,1,1)
-MinimizeButton.TextSize = 18
-
-local minimized = false
-MinimizeButton.MouseButton1Click:Connect(function()
-    minimized = not minimized
-    MainArea.Visible = not minimized
-    SideBar.Visible = not minimized
-end)
-
--- Sidebar
 SideBar.Parent = Main
 SideBar.BackgroundColor3 = Color3.fromRGB(50, 35, 15)
-SideBar.Position = UDim2.new(0, 0, 0, 40)
-SideBar.Size = UDim2.new(0, 120, 1, -40)
+SideBar.Position = UDim2.new(0, 0, 0, 35)
+SideBar.Size = UDim2.new(0, 120, 1, -35)
 
 ScriptsButton.Parent = SideBar
-ScriptsButton.BackgroundColor3 = Color3.fromRGB(80, 55, 25)
-ScriptsButton.Position = UDim2.new(0.1, 0, 0.05, 0)
-ScriptsButton.Size = UDim2.new(0, 100, 0, 40)
-ScriptsButton.Font = Enum.Font.GothamBold
 ScriptsButton.Text = "Scripts"
-ScriptsButton.TextColor3 = Color3.new(1,1,1)
+ScriptsButton.Font = Enum.Font.GothamBold
 ScriptsButton.TextSize = 16
+ScriptsButton.TextColor3 = Color3.new(1,1,1)
+ScriptsButton.BackgroundColor3 = Color3.fromRGB(80, 55, 25)
+ScriptsButton.Size = UDim2.new(0, 100, 0, 40)
+ScriptsButton.Position = UDim2.new(0.1, 0, 0.05, 0)
 
 PlayerButton.Parent = SideBar
-PlayerButton.BackgroundColor3 = Color3.fromRGB(80, 55, 25)
-PlayerButton.Position = UDim2.new(0.1, 0, 0.25, 0)
-PlayerButton.Size = UDim2.new(0, 100, 0, 40)
-PlayerButton.Font = Enum.Font.GothamBold
 PlayerButton.Text = "Player"
-PlayerButton.TextColor3 = Color3.new(1,1,1)
+PlayerButton.Font = Enum.Font.GothamBold
 PlayerButton.TextSize = 16
+PlayerButton.TextColor3 = Color3.new(1,1,1)
+PlayerButton.BackgroundColor3 = Color3.fromRGB(80, 55, 25)
+PlayerButton.Size = UDim2.new(0, 100, 0, 40)
+PlayerButton.Position = UDim2.new(0.1, 0, 0.2, 0)
 
--- MainArea
 MainArea.Parent = Main
 MainArea.BackgroundColor3 = Color3.fromRGB(70, 50, 25)
-MainArea.Position = UDim2.new(0, 120, 0, 40)
-MainArea.Size = UDim2.new(1, -120, 1, -40)
+MainArea.Position = UDim2.new(0, 120, 0, 35)
+MainArea.Size = UDim2.new(1, -120, 1, -35)
 
--- Botões dentro do MainArea
+-- Functions
+local function hideAll()
+	for _, v in pairs(MainArea:GetChildren()) do
+		if v:IsA("TextButton") or v:IsA("TextBox") then
+			v.Visible = false
+		end
+	end
+end
+
+-- Scripts Buttons
 FlyButton.Parent = MainArea
-FlyButton.BackgroundColor3 = Color3.fromRGB(90, 65, 35)
+FlyButton.Text = "🚀 Fly"
 FlyButton.Position = UDim2.new(0.05, 0, 0.05, 0)
-FlyButton.Size = UDim2.new(0, 200, 0, 50)
-FlyButton.Font = Enum.Font.GothamBold
-FlyButton.Text = "🚀 Ativar Fly"
+FlyButton.Size = UDim2.new(0, 200, 0, 40)
+FlyButton.BackgroundColor3 = Color3.fromRGB(90,65,35)
 FlyButton.TextColor3 = Color3.new(1,1,1)
-FlyButton.TextSize = 18
+FlyButton.Font = Enum.Font.GothamBold
+FlyButton.TextSize = 16
 FlyButton.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()
 end)
 
-NoClipButton.Parent = MainArea
-NoClipButton.BackgroundColor3 = Color3.fromRGB(90, 65, 35)
-NoClipButton.Position = UDim2.new(0.05, 0, 0.3, 0)
-NoClipButton.Size = UDim2.new(0, 200, 0, 50)
-NoClipButton.Font = Enum.Font.GothamBold
-NoClipButton.Text = "🌀 Ativar NoClip"
-NoClipButton.TextColor3 = Color3.new(1,1,1)
-NoClipButton.TextSize = 18
+ESPButton.Parent = MainArea
+ESPButton.Text = "🧠 ESP"
+ESPButton.Position = UDim2.new(0.05, 0, 0.2, 0)
+ESPButton.Size = UDim2.new(0, 200, 0, 40)
+ESPButton.BackgroundColor3 = Color3.fromRGB(90,65,35)
+ESPButton.TextColor3 = Color3.new(1,1,1)
+ESPButton.Font = Enum.Font.GothamBold
+ESPButton.TextSize = 16
+ESPButton.MouseButton1Click:Connect(function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/leozinxsxz/Esp.lua/main/Esp.lua.txt"))()
+end)
 
 local noclip = false
+local connection
+NoClipButton.Parent = MainArea
+NoClipButton.Text = "🎯 No Clip (Toggle)"
+NoClipButton.Position = UDim2.new(0.05, 0, 0.35, 0)
+NoClipButton.Size = UDim2.new(0, 200, 0, 40)
+NoClipButton.BackgroundColor3 = Color3.fromRGB(90,65,35)
+NoClipButton.TextColor3 = Color3.new(1,1,1)
+NoClipButton.Font = Enum.Font.GothamBold
+NoClipButton.TextSize = 16
 NoClipButton.MouseButton1Click:Connect(function()
-    noclip = not noclip
-    NoClipButton.Text = noclip and "🌀 NoClip ON" or "🌀 NoClip OFF"
+	noclip = not noclip
+	if noclip then
+		connection = game:GetService("RunService").Stepped:Connect(function()
+			game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+		end)
+	else
+		if connection then connection:Disconnect() end
+	end
 end)
 
-game:GetService("RunService").Stepped:Connect(function()
-    if noclip and game.Players.LocalPlayer.Character then
-        for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-            if v:IsA("BasePart") and v.CanCollide == true then
-                v.CanCollide = false
-            end
-        end
-    end
+-- Player Buttons
+SpeedButton.Parent = MainArea
+SpeedButton.Text = "🏃 Speed +50"
+SpeedButton.Position = UDim2.new(0.05, 0, 0.05, 0)
+SpeedButton.Size = UDim2.new(0, 200, 0, 40)
+SpeedButton.BackgroundColor3 = Color3.fromRGB(90,65,35)
+SpeedButton.TextColor3 = Color3.new(1,1,1)
+SpeedButton.Font = Enum.Font.GothamBold
+SpeedButton.TextSize = 16
+SpeedButton.MouseButton1Click:Connect(function()
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
 end)
 
--- Sistema Drag
+JumpButton.Parent = MainArea
+JumpButton.Text = "🦵 Jump +50"
+JumpButton.Position = UDim2.new(0.05, 0, 0.2, 0)
+JumpButton.Size = UDim2.new(0, 200, 0, 40)
+JumpButton.BackgroundColor3 = Color3.fromRGB(90,65,35)
+JumpButton.TextColor3 = Color3.new(1,1,1)
+JumpButton.Font = Enum.Font.GothamBold
+JumpButton.TextSize = 16
+JumpButton.MouseButton1Click:Connect(function()
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+end)
+
+TeleportBox.Parent = MainArea
+TeleportBox.PlaceholderText = "NomeDoPlayer"
+TeleportBox.Text = ""
+TeleportBox.Position = UDim2.new(0.05, 0, 0.35, 0)
+TeleportBox.Size = UDim2.new(0, 200, 0, 30)
+TeleportBox.BackgroundColor3 = Color3.fromRGB(90,65,35)
+TeleportBox.TextColor3 = Color3.new(1,1,1)
+TeleportBox.Font = Enum.Font.Gotham
+TeleportBox.TextSize = 14
+
+TeleportButton.Parent = MainArea
+TeleportButton.Text = "🚀 Teleportar"
+TeleportButton.Position = UDim2.new(0.05, 0, 0.5, 0)
+TeleportButton.Size = UDim2.new(0, 200, 0, 30)
+TeleportButton.BackgroundColor3 = Color3.fromRGB(90,65,35)
+TeleportButton.TextColor3 = Color3.new(1,1,1)
+TeleportButton.Font = Enum.Font.GothamBold
+TeleportButton.TextSize = 14
+TeleportButton.MouseButton1Click:Connect(function()
+	local target = game.Players:FindFirstChild(TeleportBox.Text)
+	if target then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame + Vector3.new(0,2,0)
+	end
+end)
+
+-- Tabs switching
+ScriptsButton.MouseButton1Click:Connect(function()
+	hideAll()
+	FlyButton.Visible = true
+	ESPButton.Visible = true
+	NoClipButton.Visible = true
+end)
+
+PlayerButton.MouseButton1Click:Connect(function()
+	hideAll()
+	SpeedButton.Visible = true
+	JumpButton.Visible = true
+	TeleportBox.Visible = true
+	TeleportButton.Visible = true
+end)
+
+-- Close and Minimize
+CloseButton.MouseButton1Click:Connect(function()
+	ScreenGui:Destroy()
+end)
+
+MinButton.MouseButton1Click:Connect(function()
+	Main.Visible = not Main.Visible
+end)
+
+-- Drag system
 local UIS = game:GetService("UserInputService")
-local frame = Main
-local dragToggle = nil
-local dragSpeed = 0.15
-local dragStart = nil
-local startPos = nil
+local dragToggle, dragInput, dragStart, startPos
 
 local function updateInput(input)
 	local delta = input.Position - dragStart
-	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+	Main.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
 		startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-	frame:TweenPosition(position, "Out", "Sine", dragSpeed, true)
 end
 
 TopBar.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 then
 		dragToggle = true
 		dragStart = input.Position
-		startPos = frame.Position
+		startPos = Main.Position
 		input.Changed:Connect(function()
 			if input.UserInputState == Enum.UserInputState.End then
 				dragToggle = false
@@ -171,3 +250,7 @@ UIS.InputChanged:Connect(function(input)
 		end
 	end
 end)
+
+-- Inicializar na aba Scripts
+ScriptsButton:Activate()
+ScriptsButton:FireEvent("MouseButton1Click")
